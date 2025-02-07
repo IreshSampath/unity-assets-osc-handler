@@ -10,6 +10,7 @@ namespace GAG.OSCHandler
         [SerializeField] TMP_Text _localIPTxt;
 
         [SerializeField] TMP_InputField _remoteIPInput;
+        [SerializeField] TMP_InputField _portInput;
         [SerializeField] TMP_InputField _msgInput;
 
         [SerializeField] TMP_Text _consolTxt;
@@ -28,7 +29,12 @@ namespace GAG.OSCHandler
 
         public void ShowInstructions()
         {
-            string instructions = "# Ensure all devices are connected to the same network.\r\n# If you switch to a different network, click Refresh to update the local IP.\r\n# After changing the remote IP, remember to Save your settings..";
+            string instructions = "" +
+                "# Ensure all devices are connected to the same network.\n\n" +
+                "# If you switch to a different network, click Refresh to update the local IP.\n\n" +
+                "# After changing the remote IP, remember to Save your settings.\n\n" +
+                "# If you're not receiving messages on the Windows app, disable the firewall for public networks.";
+
             PrintConsole(instructions);
         }
 
@@ -41,7 +47,9 @@ namespace GAG.OSCHandler
         void LoadDefaultData()
         {
             _remoteIPInput.text = PlayerPrefs.GetString("RemoteIpAdress", "0.0.0.0");
+            _portInput.text = PlayerPrefs.GetString("Port", "7000");
             RegisterOtherDeviceIP();
+            RegisterPort();
         }
 
         public void PrintConsole(string msg)
@@ -72,6 +80,14 @@ namespace GAG.OSCHandler
 
             AppEvents.RaiseOnRemotIPEntered(_remoteIPInput.text);
             PrintConsole($"Remote IP Saved ({_remoteIPInput.text})");
+        }
+
+        public void RegisterPort()
+        {
+            PlayerPrefs.SetString("Port", _portInput.text);
+
+            AppEvents.RaiseOnPortLoaded(_portInput.text);
+            PrintConsole($"Port Saved ({_portInput.text})");
         }
 
         public void SetMsg()

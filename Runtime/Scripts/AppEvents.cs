@@ -7,6 +7,7 @@ namespace GAG.OSCHandler
         public static event Action OnOscDashboardOpened;
 
         public static event Action<string> OnLocalIPLoaded;
+        public static event Action<string> OnPortLoaded;
 
         public static event Action<string> OnRemotIPEntered;
         public static event Action<string> OnMsgSent;
@@ -25,6 +26,11 @@ namespace GAG.OSCHandler
         public static void RaiseOnRemotIPEntered(string ip)
         {
             OnRemotIPEntered?.Invoke(ip);
+        }
+
+        public static void RaiseOnPortLoaded(string port)
+        {
+            OnPortLoaded?.Invoke(port);
         }
 
         public static void RaiseOnMsgSentd(string msg)

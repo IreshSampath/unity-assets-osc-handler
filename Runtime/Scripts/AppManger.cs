@@ -24,8 +24,6 @@ public class AppManger : MonoBehaviour
 
         if (_ipTapCount == 3)
         {
-            
-
             AppEvents.RaiseOnOscDashboardOpened();
 
             _ipTapCount = 0;

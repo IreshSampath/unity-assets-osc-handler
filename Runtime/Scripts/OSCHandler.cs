@@ -32,6 +32,7 @@ namespace GAG.OSCHandler
             AppEvents.OnOscDashboardOpened += LoadDefaultData;
 
             AppEvents.OnRemotIPEntered += SetRemoteIP;
+            AppEvents.OnPortLoaded += SetPort;
             AppEvents.OnMsgSent += SendMessageFromThisDevice;
         }
 
@@ -97,6 +98,13 @@ namespace GAG.OSCHandler
         void SetRemoteIP(string ip)
         {
             Transmitter.RemoteHost = ip;
+        }
+        
+        void SetPort(string port)
+        {
+            print(port);
+            Receiver.LocalPort = int.Parse(port);
+            Transmitter.RemotePort = int.Parse(port);
         }
 
         void SendMessageFromThisDevice(string msg)
