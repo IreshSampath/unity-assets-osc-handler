@@ -31,8 +31,8 @@ namespace GAG.OSCHandler
         {
             string instructions = "" +
                 "# Ensure all devices are connected to the same network.\n\n" +
-                "# If you switch to a different network, click Refresh to update the local IP.\n\n" +
-                "# After changing the remote IP, remember to Save your settings.\n\n" +
+                "# When changing the local network, click \"Refresh\" to update the local IP address.\n\n" +
+                "# After changing the remote IP, don't forget to click \"Save\".\n\n" +
                 "# If you're not receiving messages on the Windows app, disable the firewall for public networks.";
 
             PrintConsole(instructions);
